@@ -131,3 +131,11 @@ module.exports = {
 	invalidateUserToken,
 	resolveContext,
 };
+
+// Helper for bot to fetch queued events
+async function getEvents() {
+  const res = await botAxios.get('/api/rewards/events');
+  return res.data.events;
+}
+
+module.exports.getEvents = getEvents;
