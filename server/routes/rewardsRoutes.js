@@ -5,6 +5,8 @@ import {
   getBadge,
   awardBadge,
 } from "../controllers/badgeController.js";
+import { botAuth } from "../middlewares/botAuthMiddleware.js";
+import { drainEvents } from "../utils/eventQueue.js";
 
 const router = express.Router();
 
@@ -34,6 +36,16 @@ router.post("/badges/:id/award", async (req, res, next) => {
     return awardBadge(req, res, next);
   } catch (err) {
     next(err);
+  }
+});
+
+// Bot: fetch and clear pending events (bot must include X-Bot-Api-Key)
+router.get("/events", botAuth, (req, res) => {
+  try {
+    const ev = drainEvents();
+    res.json({ events: ev });
+  } catch (err) {
+    res.status(500).json({ message: "failed to fetch events" });
   }
 });
 

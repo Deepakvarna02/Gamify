@@ -1,6 +1,7 @@
 import Badge from "../models/Badge.js";
 import User from "../models/User.js";
 import mongoose from "mongoose";
+import { pushEvent } from "../utils/eventQueue.js";
 
 export const createBadge = async (req, res, next) => {
   try {
@@ -67,6 +68,13 @@ export const awardBadge = async (req, res, next) => {
     if (!user.badges.includes(badge.slug)) {
       user.badges.push(badge.slug);
       await user.save();
+      // push an event for external consumers (bot) to pick up
+      try {
+        pushEvent({ type: "badge_awarded", badge: badge.slug, userId: user.id, badgeId: badge._id });
+      } catch (e) {
+        // non-fatal
+        console.error("Failed to push badge event", e);
+      }
     }
 
     // Optionally: return updated user
