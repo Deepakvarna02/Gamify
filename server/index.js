@@ -14,6 +14,7 @@ import taskRoutes from "./routes/taskRoutes.js";
 import shopRoutes from "./routes/shopRoutes.js";
 import leaderboardRoutes from "./routes/leaderboardRoutes.js";
 import discordRoutes from "./routes/discordRoutes.js";
+import rewardsRoutes from "./routes/rewardsRoutes.js";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import session from "express-session";
@@ -126,6 +127,7 @@ app.use("/api/shop", shopRoutes);
 app.use("/api/leaderboard", leaderboardRoutes);
 app.use("/api/newsletter", newsletterRoutes);
 app.use("/api/discord", discordRoutes);
+app.use("/api/rewards", rewardsRoutes);
 
 // 404 handler
 app.use((req, res) => {

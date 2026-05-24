@@ -23,6 +23,7 @@ import taskRoutes from "./routes/taskRoutes.js";
 import shopRoutes from "./routes/shopRoutes.js";
 import leaderboardRoutes from "./routes/leaderboardRoutes.js";
 import discordRoutes from "./routes/discordRoutes.js";
+import rewardsRoutes from "./routes/rewardsRoutes.js";
 
 // Initialize app
 const app = express();
@@ -106,6 +107,7 @@ app.use("/api/shop", shopRoutes);
 app.use("/api/leaderboard", leaderboardRoutes);
 app.use("/api/newsletter", newsletterRoutes);
 app.use("/api/discord", discordRoutes);
+app.use("/api/rewards", rewardsRoutes);
 
 // 404
 app.use((req, res) => {
