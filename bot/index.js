@@ -53,6 +53,13 @@ client.once("ready", (c) => {
 	console.log(`\n✅  Gamify Bot is online as ${c.user.tag}`);
 	console.log(`    Serving ${c.guilds.cache.size} guild(s)\n`);
 	c.user.setActivity("Gamify  |  /help", { type: 4 /* CUSTOM */ });
+	try {
+		const { startPoller } = require("./src/poller");
+		startPoller(client, Number(process.env.BOT_POLL_INTERVAL_MS) || 15000);
+		console.log("Started event poller");
+	} catch (e) {
+		console.error("Failed to start poller", e);
+	}
 });
 
 // ─── Global error handling ────────────────────────────────────────────────────
