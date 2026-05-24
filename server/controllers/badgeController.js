@@ -1,5 +1,6 @@
 import Badge from "../models/Badge.js";
 import User from "../models/User.js";
+import mongoose from "mongoose";
 
 export const createBadge = async (req, res, next) => {
   try {
@@ -21,6 +22,10 @@ export const createBadge = async (req, res, next) => {
 
 export const listBadges = async (req, res, next) => {
   try {
+    if (mongoose.connection.readyState !== 1) {
+      // DB not connected — return empty list so UI can function in degraded mode
+      return res.json([]);
+    }
     const badges = await Badge.find({}).sort({ createdAt: -1 }).lean();
     res.json(badges);
   } catch (err) {
@@ -30,6 +35,9 @@ export const listBadges = async (req, res, next) => {
 
 export const getBadge = async (req, res, next) => {
   try {
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(503).json({ message: "Database unavailable" });
+    }
     const badge = await Badge.findById(req.params.id).lean();
     if (!badge) return res.status(404).json({ message: "Badge not found" });
     res.json(badge);
@@ -43,6 +51,10 @@ export const awardBadge = async (req, res, next) => {
     const badgeId = req.params.id;
     const { userId } = req.body;
     if (!userId) return res.status(400).json({ message: "userId is required" });
+
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(503).json({ message: "Database unavailable" });
+    }
 
     const badge = await Badge.findById(badgeId).lean();
     if (!badge) return res.status(404).json({ message: "Badge not found" });

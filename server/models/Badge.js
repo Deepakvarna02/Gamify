@@ -11,7 +11,6 @@ const badgeSchema = new mongoose.Schema({
   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: false },
 });
 
-badgeSchema.index({ slug: 1 });
 
 const Badge = mongoose.model("Badge", badgeSchema);
 
