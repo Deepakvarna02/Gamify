@@ -12,6 +12,7 @@ import { ShopPage } from "./pages/app/ShopPage.jsx";
 import { LeaderboardPage } from "./pages/app/LeaderboardPage.jsx";
 import { PointsPage } from "./pages/app/PointsPage.jsx";
 import { ProfilePage } from "./pages/app/ProfilePage.jsx";
+import { BadgesPage } from "./pages/app/BadgesPage.jsx";
 import { ModerationPage } from "./pages/app/ModerationPage.jsx";
 import { UsersPage } from "./pages/app/UsersPage.jsx";
 import { NewsletterPage } from "./pages/app/NewsletterPage.jsx";
@@ -37,6 +38,7 @@ export default function App() {
 						<Route path="leaderboard" element={<LeaderboardPage />} />
 						<Route path="points" element={<PointsPage />} />
 						<Route path="profile" element={<ProfilePage />} />
+							<Route path="badges" element={<BadgesPage />} />
 						{/* Moderator+ */}
 						<Route path="moderation" element={<ModerationPage />} />
 						{/* Admin / Organisation */}

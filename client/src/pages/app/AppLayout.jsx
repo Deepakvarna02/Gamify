@@ -15,6 +15,7 @@ const PAGE_TITLES = {
 	},
 	"/app/points": { title: "Points", sub: "Your point history and balance" },
 	"/app/profile": { title: "Profile", sub: "Manage your account" },
+	"/app/badges": { title: "Badges", sub: "View earned and available badges" },
 	"/app/moderation": {
 		title: "Moderation",
 		sub: "Review submissions & award points",

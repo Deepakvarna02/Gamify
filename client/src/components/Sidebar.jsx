@@ -25,6 +25,7 @@ const navItems = [
 	{ to: "/app/tasks", icon: RiTaskLine, label: "Tasks" },
 	{ to: "/app/shop", icon: RiStore2Line, label: "Shop" },
 	{ to: "/app/leaderboard", icon: RiTrophyLine, label: "Leaderboard" },
+	{ to: "/app/badges", icon: RiTrophyLine, label: "Badges" },
 	{ to: "/app/points", icon: RiCoinLine, label: "Points" },
 	{ to: "/app/profile", icon: RiUserLine, label: "Profile" },
 ];
